@@ -1,0 +1,26 @@
+package list;
+
+import org.sugarj.languages.Java;
+import concretesyntax.Java;
+
+import list.SList;
+
+public sugar SugarList {
+
+    context-free syntax
+    "[" JavaType "]" -> JavaType {cons("LType")}
+    "[" {JavaExpr ","}+ "]" -> JavaExpr {cons("LExpr")}
+
+    desugarings
+        desugar-list-type
+        desugar-list-expr
+
+    rules
+        desugar-list-type :
+            LType(t) -> |[ java.util.ArrayList<~t> ]|
+
+        desugar-list-expr :
+        LExpr([e]) -> SList.create(e)
+        LExpr([es]) -> SList.create(xs)
+        where xs := <intersperse(|","); concat-strings> es
+}

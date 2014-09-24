@@ -1,0 +1,28 @@
+package list;
+
+import list.SugarList;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class SugarListTest {
+    private [Integer] xs;
+
+    @Before
+    public void setUp() {
+        xs = [1, 2, 3, 4];
+    }
+    @Test
+    public void testContent() {
+        Assert.AssertEquals(1, xs.get(0));
+        Assert.AssertEquals(4, xs.get(3));
+    }
+    @Test
+    public void testMod() {
+        Assert.AssertEquals(4, xs.size());
+        xs.add(42);
+        Assert.AssertEquals(5, xs.size());
+        xs.remove(0);
+        Assert.AssertEquals(4, xs.size());
+    }
+}
